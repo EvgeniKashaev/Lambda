@@ -50,6 +50,7 @@ object ChatService {
     fun clear() {
         directMessage.clear()
         chat.clear()
+
     }
 }
 //Возможности для пользов
