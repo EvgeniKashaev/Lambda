@@ -1,53 +1,55 @@
+
+
 //Лямбды, extension-функции, операторы»
 fun main() {
-    ChatService.addMessaqes(Message(text = "1"),ChatService.addDirectMessages())
-    ChatService.addMessaqes(Message(text = "2"), ChatService.addDirectMessages())
-    ChatService.addMessaqes(Message(text = "3"), ChatService.addDirectMessages())
-    ChatService.addMessaqes(Message(text = "4"), ChatService.addDirectMessages())
+    ChatService.addMessaqes(Message(text = "1"))
+    ChatService.addMessaqes(Message(text = "11"))
 
-    println(ChatService.directMessage)
+    ChatService.addMessaqes(Message(text = "2"))
+    ChatService.addMessaqes(Message(text = "21"))
+
+
+    println(ChatService.chat)
+
+
+
+    //println(ChatService.x())
+
+
 
 }
 
 data class Message(
+    val idUser: Int = 1,
     var idMessage: Int = ChatService.idMessage,
     val text: String,
-    val incoming: Boolean = true,
-    val readMessage: Boolean = true
+    //val incoming: Boolean = true,
+    //val readMessage: Boolean = true
 )
 
 data class DirectMessages(
-    val idDirectMessages: Int = ChatService.idDirectMessages,
-    val chat: MutableList<Message> = ChatService.chats
+    val idDirectMessages: Int = 1,
+    val chats: MutableList<Message> = mutableListOf()
 )
 
-
 object ChatService {
-    var idDirectMessages = 0
+    var idDirectMessage = 1
     var idMessage = 1
 
-    val chats: MutableList<Message> = mutableListOf()
+
+    val chat: MutableList<Message> = mutableListOf()
     val directMessage: MutableList<DirectMessages> = mutableListOf()
 
 
-    val addDirectMessages = fun(): DirectMessages {
-        idDirectMessages++
-        directMessage += DirectMessages().copy()
-        return directMessage.last()
-    }
-
-    val addMessaqes = fun(message: Message,addDirectMessages: DirectMessages): Message {
+    fun addMessaqes(chats: Message) {
         idMessage++
-        chats += message.copy()
-        return chats.last()
+        idDirectMessage++
+        chat += chats.copy()
     }
 
-    // Можно создавать чаты,
-// удалять их,
-// получать список имеющихся чатов.
     fun clear() {
-        //  directMessages.clear()
-        chats.clear()
+        directMessage.clear()
+        chat.clear()
     }
 }
 //Возможности для пользов
