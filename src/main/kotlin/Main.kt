@@ -10,17 +10,14 @@ fun main() {
 
 
     println(ChatService.chat)
-
-
-
-    //println(ChatService.x())
+    println(ChatService.filter)
 
 
 
 }
 
 data class Message(
-    val idUser: Int = 1,
+    val idUser: Int = 0,
     var idMessage: Int = ChatService.idMessage,
     val text: String,
     //val incoming: Boolean = true,
@@ -40,7 +37,7 @@ object ChatService {
     val chat: MutableList<Message> = mutableListOf()
     val directMessage: MutableList<DirectMessages> = mutableListOf()
 
-
+    val filter: List<Message> = chat.filter { index -> index.idUser == 0 }
     fun addMessaqes(chats: Message) {
         idMessage++
         idDirectMessage++
@@ -50,7 +47,6 @@ object ChatService {
     fun clear() {
         directMessage.clear()
         chat.clear()
-
     }
 }
 //Возможности для пользов
