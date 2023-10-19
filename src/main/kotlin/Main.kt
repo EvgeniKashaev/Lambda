@@ -5,7 +5,7 @@ class ChatNotFoundException : Exception()
 object ChatService {
 
     private val chats = mutableMapOf<Int, Chat>()
-     var mesId: Int = 0
+    var mesId: Int = 0
     fun senMessage(userId: Int, message: String) {
         mesId++
         chats.getOrPut(userId) {
@@ -26,7 +26,7 @@ object ChatService {
     } // Получить список последних сообщений из чатов
 
     fun getChats(): MutableMap<Int, Chat> {
-        return(chats) // Получить список чатов
+        return (chats) // Получить список чатов
     }
 
     fun getUnreadChatsCount() = chats.values.count { chat: Chat ->
@@ -35,10 +35,10 @@ object ChatService {
         }
     } // Видеть, сколько чатов не прочитано
 
-    fun deleteMessage(chatId: Int, messageId: Int) =
-        chats[chatId]?.messages?.remove(chats[chatId]?.messages?.find { it.messId == messageId })
+    fun deleteMessage(chatId: Int, messageId: Int) = chats[chatId]?.messages?.remove(chats[chatId]?.messages?.find {
+        it.messId == messageId
+    })//Удалить сообщение.
 
-    //Удалить сообщение.
     fun deleteChat(userId: Int) = chats.remove(userId) //Удалить чат, т. е. целиком удалить всю переписку.
 
 }
