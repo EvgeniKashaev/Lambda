@@ -10,5 +10,5 @@ class ChatServiceTest {
         val result = ChatService.senMessage(1,text)
         assertEquals(result, text)
 
-    }//Создать новое сообщение.
+    } //Создать новое сообщение.
 }
